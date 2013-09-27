@@ -1,9 +1,16 @@
 <div class="page-header">
   <h1>
   	<%= @inventory.name %>
-		<%= link_to edit_inventory_path(@inventory), class: 'btn btn-primary pull-right' do %>
-			<i class="glyphicon glyphicon-pencil"></i>
-		<% end %>
+
+  	<div class="btn-group pull-right">
+			<%= link_to edit_inventory_path(@inventory), class: 'btn btn-primary' do %>
+				<i class="glyphicon glyphicon-pencil"></i>
+			<% end %>
+
+			<%= link_to inventory_path(@inventory, format: :text), class: 'btn btn-default', title: 'Ansible Inventory file' do %>
+				<i class="glyphicon glyphicon-download"></i>
+			<% end %>
+		</div>
   </h1>
 </div>
 

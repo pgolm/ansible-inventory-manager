@@ -37,6 +37,11 @@ class InventoriesController < ApplicationController
 
   def show
     @inventory = Inventory.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.text { render :text => @inventory.as_ansible_ini, :content_type => 'text/plain' }
+    end
   end
 
   def index

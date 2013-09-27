@@ -5,7 +5,7 @@ class AnsibleApiController < ApplicationController
     @inventory = Inventory.find(params[:id])
 
     respond_to do |format|
-      format.json { render json: @inventory.as_ansible }
+      format.json { render json: @inventory.as_ansible_json }
     end
   end
 
