@@ -51,8 +51,12 @@ class Inventory < ActiveRecord::Base
   private 
 
   def ini_host_line(host)
-    result = host.alias + ' '
-    vars = ActiveSupport::JSON.decode(host.variables).map {|var| "#{var[0]}=#{var[1]}"}
-    result += vars.join(' ')
+    begin
+      result = host.alias + ' '
+      vars = ActiveSupport::JSON.decode(host.variables).map {|var| "#{var[0]}=#{var[1]}"}
+      result += vars.join(' ')
+    rescue
+      "# Error with #{host}"
+    end
   end
 end

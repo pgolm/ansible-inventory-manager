@@ -1,4 +1,5 @@
 class Group < ActiveRecord::Base
+  include Variabable 
   default_scope { order(:name) }
 
   belongs_to :inventory
