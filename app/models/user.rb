@@ -6,4 +6,18 @@ class User < ActiveRecord::Base
 	    user.email = auth["info"]["email"]
 	  end
 	end
+
+  def identity
+    if has_identity?
+      Identity.find_by(email: self.email)
+    end
+  end
+
+  def has_identity?
+    self.provider == 'identity'
+  end
+
+  def self.generate_api_key
+    SecureRandom.hex
+  end
 end

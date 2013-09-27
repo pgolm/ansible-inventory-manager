@@ -19,6 +19,9 @@ AnsibleWebInventory::Application.routes.draw do
   get '/ansible/inventory/:id', to: 'ansible_api#inventory'
   get '/ansible/inventory/:id/:host', to: 'ansible_api#host'
 
+  # User
+  resources :user
+
   # statics
   get '/help', to: 'static_pages#help'
 

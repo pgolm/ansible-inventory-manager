@@ -13,6 +13,8 @@ class Ability
         can :manage, Inventory
         can :manage, Host
         can :manage, Group
+
+        can :manage, user
     else
         # guest
         can :create, Identity if AnsibleWebInventory::Application.config.registration

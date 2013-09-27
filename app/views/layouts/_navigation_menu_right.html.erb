@@ -7,7 +7,9 @@
 </li>
 
 <li id="avatar-btn" class="hidden-xs">
-  <%= image_tag avatar_url(current_user, 28), class: 'img-rounded' %>
+  <%= link_to current_user do %>
+    <%= image_tag avatar_url(current_user, 28), class: 'img-rounded' %>
+  <% end %>
 </li>
 
 <% else %>

@@ -1,5 +1,5 @@
 class AnsibleApiController < ApplicationController
-  #todo: use hash & check apikey
+  before_filter :restrict_access
   
   def inventory
     @inventory = Inventory.find(params[:id])
@@ -14,6 +14,14 @@ class AnsibleApiController < ApplicationController
 
     respond_to do |format|
       format.json { render json: @host.variables }
+    end
+  end
+
+  private
+
+  def restrict_access
+    authenticate_or_request_with_http_token do |token, options|
+      User.exists?(api_key: token)
     end
   end
 end

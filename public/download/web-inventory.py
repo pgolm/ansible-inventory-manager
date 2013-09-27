@@ -8,6 +8,7 @@ import ConfigParser
 
 server = ""
 inventory_id = 0
+api_key = ""
 
 def read_settings():
         ''' Reads the settings from the digital_ocean.ini file '''
@@ -23,19 +24,28 @@ def read_settings():
             global inventory_id 
             inventory_id = config.get('web-inventory', 'inventory_id')
 
+        if config.has_option('web-inventory', 'api_key'):
+            global api_key 
+            api_key = config.get('web-inventory', 'api_key')
+
 def main(argv):  
     parser = argparse.ArgumentParser()
     parser.add_argument('--list', action='store_true')
     parser.add_argument('--host')
     args = parser.parse_args()
     
+
     if args.list:
         read_settings()
-        print urllib2.urlopen('%s/ansible/inventory/%s.json' % (server, inventory_id)).read()
+
+        request = urllib2.Request('%s/ansible/inventory/%s.json' % (server, inventory_id), headers={"Authorization" : "Token token=\"%s\"" % api_key})
+        print urllib2.urlopen(request).read()
         sys.exit(0)
     elif args.host:
         read_settings()
-        print urllib2.urlopen('%s/ansible/inventory/%s/%s.json' % (server, inventory_id, args.host)).read()
+
+        request = urllib2.Request('%s/ansible/inventory/%s/%s.json' % (server, inventory_id, args.host), headers={"Authorization" : "Token token=\"%s\"" % api_key})
+        print urllib2.urlopen(request).read()
         sys.exit(1)
     else:
         parser.print_help()

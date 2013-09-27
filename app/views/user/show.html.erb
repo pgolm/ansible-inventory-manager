@@ -1,0 +1,29 @@
+<fieldset class="form-horizontal">
+  <legend>General</legend>
+
+  <div class="form-group">
+    <%= label_tag :email, 'Mail:', class: 'col-lg-2 control-label' %>
+    
+    <div class="col-lg-10">
+      <p class="form-control-static"><%= @user.email %></p>
+    </div>
+  </div> 
+
+  <div class="form-group">
+    <%= label_tag :api_key, 'API Key:', class: 'col-lg-2 control-label' %>
+
+    <div class="col-lg-10">
+      <span class="form-control-static pull-left">
+        <%= @user.api_key %>
+        <%= 'No api key' if @user.api_key.nil? %>
+      </span>
+
+      <%= form_for @user do |f| %>
+        <%= f.hidden_field :api_key %>
+        <%= f.submit 'Regenerate', class: 'btn btn-primary', id: 'api_key_btn' %>
+      <% end %>
+    </div>
+  </div> 
+</fieldset>
+
+<%= render 'change_password' %>
