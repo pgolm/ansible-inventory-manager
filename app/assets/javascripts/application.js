@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require turbolinks
+//= require pace.min
 //= require twitter/bootstrap/alert
 //= require twitter/bootstrap/button
 //= require twitter/bootstrap/collapse
