@@ -15,7 +15,8 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require twitter/bootstrap/alert
+//= require twitter/bootstrap/button
 //= require twitter/bootstrap/collapse
 //= require twitter/bootstrap/dropdown
-//= require twitter/bootstrap/tooltip
 //= require_tree .
+//= require js-yaml

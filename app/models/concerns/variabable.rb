@@ -7,7 +7,11 @@ module Variabable
 
   def jsonify_vars
     unless variables.nil? or variables.empty?
-      self.variables = ActiveSupport::JSON.decode(variables).to_json
+      begin
+        self.variables = ActiveSupport::JSON.decode(variables).to_json
+      rescue
+        self.variables = YAML::load(variables).to_json
+      end
     end
   end
 end
