@@ -52,3 +52,6 @@ gem 'omniauth-identity'
 # Bootstrap
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :github => 'anjlab/bootstrap-rails'
+
+# CanCan
+gem "cancan"

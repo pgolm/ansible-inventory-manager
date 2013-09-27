@@ -9,6 +9,8 @@
   </div>
 
   <%= submit_tag "Signin", class: 'btn btn-default' %>
+  <% if can? :create, Identity %>
   or
   <%= link_to "Register", new_identity_path %>.
+  <% end %>
 <% end %>

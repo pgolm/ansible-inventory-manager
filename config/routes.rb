@@ -2,10 +2,11 @@ AnsibleWebInventory::Application.routes.draw do
   # Omniauth
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
+
+  match 'signin', to: 'sessions#new', as: 'signin', via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 
   # Auth
-  resources :sessions
   resources :identities
 
   # Inventory

@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  load_and_authorize_resource
+  
   include InventoryAction
   before_action :find_inventory, only: [:new, :create, :update, :destroy]
 

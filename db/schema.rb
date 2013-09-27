@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130925144907) do
+ActiveRecord::Schema.define(version: 20130927083658) do
 
   create_table "group_hosts", force: true do |t|
     t.integer  "host_id"
@@ -58,11 +58,12 @@ ActiveRecord::Schema.define(version: 20130925144907) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "provider",   null: false
-    t.string   "uid",        null: false
-    t.string   "email",      null: false
+    t.string   "provider",                   null: false
+    t.string   "uid",                        null: false
+    t.string   "email",                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_admin",   default: false, null: false
   end
 
 end

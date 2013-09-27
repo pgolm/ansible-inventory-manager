@@ -27,5 +27,7 @@ module AnsibleWebInventory
    
 
     config.version = "0.0.1" 
+
+    config.registration = false
   end
 end

@@ -32,7 +32,7 @@
 				    <ul class="nav navbar-nav navbar-right">
 			   		<% if current_user %>
 				   		<li>
-				   			<%= link_to session_path(current_user), method: :delete do %>
+				   			<%= link_to signout_path do %>
 									<i class="glyphicon glyphicon-log-out hidden-xs"></i>
 									<p class="visible-xs">Logout</p>
 								<% end %>
@@ -40,7 +40,7 @@
 				   		<li id="avatar-btn" class="hidden-xs"><%= image_tag avatar_url(current_user, 28), class: 'img-rounded' %> </li>
 						<% else %>
 						<li>
-							<%= link_to new_session_path do %>
+							<%= link_to signin_path do %>
 								<i class="glyphicon glyphicon-log-in hidden-xs"></i>
 								<p class="visible-xs">Login</p>
 							<% end %>
