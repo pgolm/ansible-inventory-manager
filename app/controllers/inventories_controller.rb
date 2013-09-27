@@ -37,11 +37,6 @@ class InventoriesController < ApplicationController
 
   def show
     @inventory = Inventory.find(params[:id])
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @inventory.as_ansible }
-    end
   end
 
   def index

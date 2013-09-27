@@ -41,14 +41,6 @@ class HostsController < ApplicationController
     end
   end
 
-  def show
-    @host = Host.find_by(alias: params[:id])
-
-    respond_to do |format|
-      format.json { render json: @host.variables }
-    end
-  end
-
   def destroy
     begin
       Host.find(params[:id]).destroy

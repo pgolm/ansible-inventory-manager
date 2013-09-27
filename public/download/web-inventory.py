@@ -31,11 +31,11 @@ def main(argv):
     
     if args.list:
         read_settings()
-        print urllib2.urlopen('%s/inventories/%s.json' % (server, inventory_id)).read()
+        print urllib2.urlopen('%s/ansible/inventory/%s.json' % (server, inventory_id)).read()
         sys.exit(0)
     elif args.host:
         read_settings()
-        print urllib2.urlopen('%s/inventories/%s/hosts/%s.json' % (server, inventory_id, args.host)).read()
+        print urllib2.urlopen('%s/ansible/inventory/%s/%s.json' % (server, inventory_id, args.host)).read()
         sys.exit(1)
     else:
         parser.print_help()
