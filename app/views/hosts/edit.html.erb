@@ -1,0 +1,5 @@
+<%= render 'shared/form_errors', errors: @host.errors %>
+
+<%= form_for [@host.inventory, @host] do |f| %>
+  <%= render 'form', f: f %>
+<% end %>

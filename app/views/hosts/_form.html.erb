@@ -1,0 +1,21 @@
+<div class="form-group">
+  <%= f.label :alias %>
+  <%= f.text_field :alias, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :description %>
+  <%= f.text_area :description, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :groups %>
+	<%= f.collection_select :groups, @host.inventory.groups, :id, :name, { selected: @host.group_ids, :include_blank => false }, { class: 'form-control', multiple: true } %> 
+</div>
+
+<div class="form-group">
+  <%= f.label :variables %>
+  <%= f.text_area :variables, class: 'form-control', id: 'var_area', rows: '10' %>
+</div>
+
+<%= render 'shared/form_submit_cancel', f: f, back_path: @host.inventory %>

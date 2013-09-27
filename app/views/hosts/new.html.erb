@@ -1,0 +1,7 @@
+<%= render 'shared/form_errors', errors: @host.errors %>
+
+<%= form_for [@inventory, @host] do |f| %>
+  <%= f.hidden_field :inventory_id %>
+
+  <%= render 'form', f: f %>
+<% end %>

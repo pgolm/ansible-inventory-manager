@@ -1,0 +1,11 @@
+{
+	"all" : {
+		"hosts": <%= raw @inventory.hosts.map(&:host) %>
+	}
+<% @inventory.groups.find_each do |group| %>
+	,
+	"<%= group.name %>" : {
+		"hosts": <%= raw group.hosts.map(&:host) %>
+	}
+<% end %>	
+}

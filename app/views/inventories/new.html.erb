@@ -1,0 +1,7 @@
+<%= render 'shared/form_errors', errors: @inventory.errors %>
+
+<%= form_for @inventory do |f| %>
+  <%= render 'form', f: f %>
+
+  <%= render 'shared/form_submit_cancel', f: f , back_path: inventories_path %>
+<% end %>

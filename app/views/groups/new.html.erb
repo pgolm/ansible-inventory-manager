@@ -1,0 +1,8 @@
+<%= render 'shared/form_errors', errors: @group.errors %>
+
+<%= form_for [@inventory, @group] do |f| %>
+  <%= f.hidden_field :inventory_id %>
+  <%= render 'form', f: f %>
+
+  <%= render 'shared/form_submit_cancel', f: f, back_path: @inventory %>
+<% end %>
