@@ -1,0 +1,21 @@
+<% if current_user %>
+<li>
+  <%= link_to signout_path do %>
+    <i class="glyphicon glyphicon-log-out hidden-xs"></i>
+    <p class="visible-xs">Logout</p>
+  <% end %>
+</li>
+
+<li id="avatar-btn" class="hidden-xs">
+  <%= image_tag avatar_url(current_user, 28), class: 'img-rounded' %>
+</li>
+
+<% else %>
+
+<li>
+<%= link_to signin_path do %>
+  <i class="glyphicon glyphicon-log-in hidden-xs"></i>
+  <p class="visible-xs">Login</p>
+<% end %>
+</li>
+<% end %>
