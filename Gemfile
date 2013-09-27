@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.0.0"
+ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -55,9 +55,8 @@ gem 'omniauth-identity'
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :github => 'anjlab/bootstrap-rails'
 
-# CanCan
-gem "cancan"
-
+# cancan
+gem 'cancan'
 
 # heroku
 gem 'rails_12factor', group: :production

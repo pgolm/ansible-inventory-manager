@@ -1,4 +1,9 @@
 class GroupsController < ApplicationController
+  # cancan workaround
+  before_filter only: :create do
+    @group = Group.new(group_params)
+  end
+  
   load_and_authorize_resource
   
   include InventoryAction
@@ -10,8 +15,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params)
-
+    # @group = Group.new(group_params)
     if @group.save
       flash[:notice] = "Group was created"
       redirect_to @inventory
@@ -54,12 +58,10 @@ class GroupsController < ApplicationController
   # end
 
   def group_params
-    if current_user
-      params.require(:group).permit(:name,
-        :description,
-        :variables, 
-        :inventory_id,
-        :hosts => []) 
-    end
+    params.require(:group).permit(:name,
+      :description,
+      :variables, 
+      :inventory_id,
+      :hosts => []) 
   end
 end

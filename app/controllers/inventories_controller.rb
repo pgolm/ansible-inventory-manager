@@ -1,12 +1,17 @@
 class InventoriesController < ApplicationController
+  # cancan workaround
+  before_filter only: :create do
+    @inventory = Inventory.new(inventory_params)
+  end
+
   load_and_authorize_resource
-  
+
   def new
     @inventory = Inventory.new
   end
 
   def create
-    @inventory = Inventory.new(inventory_params)
+    # @inventory = Inventory.new(inventory_params)
     if @inventory.save
       flash[:notice] = "Inventory was created."
       redirect_to @inventory
@@ -57,8 +62,6 @@ class InventoriesController < ApplicationController
   private
 
   def inventory_params
-    if current_user
-      params.require(:inventory).permit(:name, :description) 
-    end
+    params.require(:inventory).permit(:name, :description)
   end
 end

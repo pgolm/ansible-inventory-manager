@@ -1,4 +1,9 @@
 class HostsController < ApplicationController
+  # cancan workaround
+  before_filter only: :create do
+    @host = Host.new(host_params)
+  end
+
   load_and_authorize_resource
   
   include InventoryAction
@@ -10,8 +15,7 @@ class HostsController < ApplicationController
   end
 
   def create
-    @host = Host.new(host_params)
-    
+    # @host = Host.new(host_params)
     if @host.save
       flash[:notice] = "Host was created."
       redirect_to inventory_path(params[:inventory_id]) 
