@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  include SecureKey
+
+  has_many :inventories
+  
 	def self.create_with_omniauth(auth)
 	  create! do |user|
 	    user.provider = auth["provider"]
@@ -15,9 +19,5 @@ class User < ActiveRecord::Base
 
   def has_identity?
     self.provider == 'identity'
-  end
-
-  def self.generate_api_key
-    SecureRandom.hex
   end
 end

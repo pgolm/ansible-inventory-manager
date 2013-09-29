@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2>
+      Hosts
+      <%= link_to new_inventory_host_path(@inventory), 
+                                      class: 'btn btn-primary pull-right' do %>
+        <i class="glyphicon glyphicon-plus"></i>
+      <% end %>
+    </h2>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Alias</th>
+        <th>Groups</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @inventory.hosts.each do |host| %>
+      <tr>
+        <td><%= host.alias %></td>
+        <td><%= host.groups.map(&:name).join(', ') %></td>
+        <td>
+          <div class="btn-group pull-right">
+            <%= link_to edit_inventory_host_path(@inventory, host), 
+                                        class: 'btn btn-default' do %>
+              <i class="glyphicon glyphicon-pencil"></i>
+            <% end %>
+            <%= link_to inventory_host_path(@inventory, host), 
+                                        method: :delete, 
+                                        data: { confirm: 'Delete this host?'}, 
+                                        class: 'btn btn-danger' do %>
+              <i class="glyphicon glyphicon-trash"></i>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

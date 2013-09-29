@@ -1,0 +1,49 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2>
+      Groups
+      <%= link_to new_inventory_group_path(@inventory), 
+                                        class: 'btn btn-primary pull-right' do %>
+        <i class="glyphicon glyphicon-plus"></i>
+      <% end %>
+    </h2>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Hosts</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>all</td>
+        <td><%= @inventory.hosts.size %></td>
+        <td></td>
+      </tr>
+
+    <% @inventory.groups.find_each do |group| %>
+      <tr>
+        <td><%= group.name %></td>
+        <td><%= group.hosts.size %></td>
+        <td>
+          <div class="btn-group pull-right">
+            <%= link_to edit_inventory_group_path(@inventory, group), 
+                                          class: 'btn btn-default' do %>
+              <i class="glyphicon glyphicon-pencil"></i>
+            <% end %>
+            <%= link_to inventory_group_path(@inventory, group), 
+                                          method: :delete, 
+                                          data: { confirm: 'Delete this group?'}, 
+                                          class: 'btn btn-danger' do %>
+              <i class="glyphicon glyphicon-trash"></i>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

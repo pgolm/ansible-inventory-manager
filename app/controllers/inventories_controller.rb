@@ -1,13 +1,13 @@
 class InventoriesController < ApplicationController
   # cancan workaround
   before_filter only: :create do
-    @inventory = Inventory.new(inventory_params)
+    @inventory = current_user.inventories.new(inventory_params)
   end
 
   load_and_authorize_resource
 
   def new
-    @inventory = Inventory.new
+    @inventory = current_user.inventories.new
   end
 
   def create
@@ -45,7 +45,7 @@ class InventoriesController < ApplicationController
   end
 
   def index
-    @inventories = Inventory.all
+    @inventories = Inventory.accessible_by(current_ability)
   end
 
   def destroy

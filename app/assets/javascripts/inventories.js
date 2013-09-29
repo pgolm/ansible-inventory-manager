@@ -25,5 +25,16 @@ $(document).ready(function() {
 		}
 	})
 
+	// Inventory Table
+	$('#all-inventory-cb').click(function() {
+		if($(this).hasClass('active')) {
+			$('#inventory-table tbody > .warning').hide()
+		} else {
+			$('#inventory-table tbody > .warning').show()
+		}
+	});
+
+	// Init value
 	$('#yaml-format').click()
+	$('#all-inventory-cb').click().click();
 })

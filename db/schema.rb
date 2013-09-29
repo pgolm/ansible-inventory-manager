@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130927104643) do
+ActiveRecord::Schema.define(version: 20130928144936) do
 
   create_table "group_hosts", force: true do |t|
     t.integer  "host_id"
@@ -55,7 +55,11 @@ ActiveRecord::Schema.define(version: 20130927104643) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "key"
+    t.integer  "user_id"
   end
+
+  add_index "inventories", ["key"], name: "index_inventories_on_key", unique: true
 
   create_table "users", force: true do |t|
     t.string   "provider",                   null: false

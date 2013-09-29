@@ -1,12 +1,11 @@
 <div class="page-header">
   <h1>
-    <%= image_tag avatar_url(current_user, 64), class: 'img-thumbnail' %>
+    <%= image_tag avatar_url(@user, 64), class: 'img-thumbnail' %>
     Profile
   </h1>
 </div>
 
 <fieldset class="form-horizontal">
-
   <div class="form-group">
     <%= label_tag :email, 'Mail:', class: 'col-lg-2 control-label' %>
     

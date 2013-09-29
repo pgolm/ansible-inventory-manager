@@ -9,7 +9,7 @@ class UserController < ApplicationController
     @user = User.find(params[:id])
 
     if params[:user][:api_key]
-      params[:user][:api_key] = User.generate_api_key
+      params[:user][:api_key] = User::next_secure_key
       flash[:notice] = 'New API Key was generated.'
     end
 

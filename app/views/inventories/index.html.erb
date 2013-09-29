@@ -1,30 +1,56 @@
-<table class="table">
+
+
+<table id="inventory-table" class="table">
 	<thead>
 		<tr>
 			<th>Name</th>
 			<th>Hosts</th>
 			<th>Groups</th>
+			
+			<% if can? :manage, Inventory %>
+			<th>Owner</th>
+			<% end %>
+			
 			<th>
-				<%= link_to new_inventory_path, class: 'btn btn-primary pull-right' do %>
-					<i class="glyphicon glyphicon-plus"></i>
-				<% end %>
+				<div class="btn-group pull-right">
+					<% if can? :manage, Inventory %>
+					<button id="all-inventory-cb" type="button" class="btn btn-default" data-toggle="button">Show all</button>
+					<% end %>
+
+					<%= link_to new_inventory_path, class: 'btn btn-primary' do %>
+						<i class="glyphicon glyphicon-plus"></i>
+					<% end %>
+				</div>
 			</th>
+		
 		</tr>
 	</thead>
+
 	<tbody>
 		<% @inventories.each do |inventory| %>
-		<tr>
+		<tr class="<%= 'warning' if inventory.owner != current_user %>">
 			<td><%= link_to inventory.name, inventory %></td>
 			<td><%= inventory.hosts.size %></td>
 			<td><%= inventory.groups.size %></td>
+			
+			<% if can? :manage, Inventory %>
+			<td>
+				<%= link_to_if current_user != inventory.owner, 
+											inventory.owner.email, 
+											inventory.owner  %>
+			</td>
+			<% end %>
+			
 			<td>
 				<div class="btn-group pull-right">
 					<%= link_to edit_inventory_path(inventory), class: 'btn btn-default' do %>
 						<i class="glyphicon glyphicon-pencil"></i>
 					<% end %>
+
 					<%= link_to inventory, method: :delete, data: { confirm: 'Delete this inventory?'}, class: 'btn btn-danger' do %>
 						<i class="glyphicon glyphicon-trash"></i>
 					<% end %>
+
 				</div>
 			</td>
 		</tr>

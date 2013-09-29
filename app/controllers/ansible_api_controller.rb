@@ -2,7 +2,7 @@ class AnsibleApiController < ApplicationController
   before_filter :restrict_access
   
   def inventory
-    @inventory = Inventory.find(params[:id])
+    @inventory = Inventory.find_by(key: params[:id])
 
     respond_to do |format|
       format.json { render json: @inventory.as_ansible_json }
@@ -10,7 +10,7 @@ class AnsibleApiController < ApplicationController
   end
 
   def host
-    @host = Inventory.find(params[:id]).hosts.find_by(alias: params[:host])
+    @host = Inventory.find_by(key: params[:id]).hosts.find_by(alias: params[:host])
 
     respond_to do |format|
       format.json { render json: @host.variables }

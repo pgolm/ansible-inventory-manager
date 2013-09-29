@@ -4,19 +4,17 @@ class Ability
   def initialize(user)
     user ||= User.new # guest
 
-    if user.is_admin?
-        # admin
-        can :manage, :all
-    elsif not user.uid.nil?
-        # user
-        # TODO: only user stuff
-        can :manage, Inventory
-        can :manage, Host
-        can :manage, Group
+    # alias
+    alias_action :create, :read, :update, :destroy, :to => :crud
 
-        can :manage, user
-    else
-        # guest
+    if user.is_admin? # admin
+        can :manage, :all
+    elsif not user.uid.nil? # user
+        can :crud, Inventory, user_id: user.id
+        can :crud, Host
+        can :crud, Group
+        can :crud, user
+    else # guest
         can :create, Identity if AnsibleWebInventory::Application.config.registration
     end
   end
