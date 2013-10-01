@@ -1,0 +1,38 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2>
+      User
+      <%= link_to new_identity_path, 
+                    class: 'btn btn-primary pull-right' do %>
+        <i class="glyphicon glyphicon-plus"></i>
+      <% end %>
+    </h2>
+  </div>
+
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Created</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.email, user %></td>
+        <td><%= user.created_at %></td>
+        <td>
+          <%= link_to user, 
+                      method: :delete, 
+                      data: { confirm: 'Delete this user?'}, 
+                      class: 'btn btn-danger pull-right' do %>
+              <i class="glyphicon glyphicon-trash"></i>
+            <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

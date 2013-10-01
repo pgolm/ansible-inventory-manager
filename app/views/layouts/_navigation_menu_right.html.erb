@@ -1,4 +1,14 @@
 <% if current_user %>
+
+<% if current_user.is_admin? %>
+<li>
+  <%= link_to administration_path do %>
+    <i class="glyphicon glyphicon-cog hidden-xs"></i>
+    <p class="visible-xs">Administration</p>
+  <% end %>
+</li>
+<% end %>
+
 <li>
   <%= link_to signout_path do %>
     <i class="glyphicon glyphicon-log-out hidden-xs"></i>

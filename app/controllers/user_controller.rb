@@ -18,6 +18,17 @@ class UserController < ApplicationController
     end
   end
 
+  def destroy
+    begin
+      User.find(params[:id]).destroy
+      flash[:notice] = "User was deleted."
+    rescue
+      flash[:alert] = "User couldn't be deleted."
+    end
+
+    redirect_to root_path
+  end
+
   private
 
   def user_params

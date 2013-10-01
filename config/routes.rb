@@ -15,6 +15,8 @@ AnsibleWebInventory::Application.routes.draw do
     resources :groups
   end
 
+  get '/administration', to: 'administration#user'
+
   # Ansible API
   get '/ansible/inventory/:id', to: 'ansible_api#inventory'
   get '/ansible/inventory/:id/:host', to: 'ansible_api#host'

@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include SecureKey
 
+  default_scope { order :email }
+  
   has_many :inventories
   
 	def self.create_with_omniauth(auth)
