@@ -2,8 +2,39 @@
   <h1>Help</h1>
 </div>
 
-Download the inventory plugin: 
+<h2>API</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>URL</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>/ansible/inventory/[inventory-key].json</td>
+      <td>ansible inventory (Ansible >= 1.0)</td>
+      <td>curl http://localhost:3000/ansible/inventory/<strong>1234</strong>.json -H 'Authorization: Token token="[api-key]"'
+</td>
+    </tr>
+    <tr>
+      <td>/ansible/inventory/[inventory-key]/[host].json</td>
+      <td>hostvars (Ansible < 1.3)</td>
+      <td>curl http://localhost:3000/ansible/inventory/[key]/<strong>localhost</strong>.json -H 'Authorization: Token token="[api-key]"'</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Inventory Plugin</h2>
+
+Download the following inventory-plugin:
 <ul>
   <li><%= link_to 'inventory-manager', '/download/inventory-manager' %></li>
   <li><%= link_to 'inventory-manager.ini', '/download/inventory-manager.ini' %></li>
 </ul>
+
+<h3>Usage</h3>
+Get all hosts with ansible:
+<pre>ansible all -i inventory-manager --list-hosts</pre>
