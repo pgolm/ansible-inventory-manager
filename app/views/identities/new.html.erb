@@ -1,26 +1,28 @@
-<%= form_tag "/auth/identity/register" do %>
-  <% if @identity && @identity.errors.any? %>
-    <div class="error_messages">
-      <h2><%= pluralize(@identity.errors.count, "error") %> prohibited this account from being saved:</h2>
-      <ul>
-      <% @identity.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div class="col-md-4 col-md-offset-4">
+  <%= form_tag "/auth/identity/register" do %>
+    <% if @identity && @identity.errors.any? %>
+      <div class="error_messages">
+        <h2><%= pluralize(@identity.errors.count, "error") %> prohibited this account from being saved:</h2>
+        <ul>
+        <% @identity.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= label_tag :email %><br>
+      <%= text_field_tag :email, @identity.try(:email), class: 'form-control' %>
     </div>
-  <% end %>
-  <div class="form-group">
-    <%= label_tag :email %><br>
-    <%= text_field_tag :email, @identity.try(:email), class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= label_tag :password %><br>
-    <%= password_field_tag :password, nil, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= label_tag :password_confirmation %><br>
-    <%= password_field_tag :password_confirmation, nil, class: 'form-control' %>
-  </div>
+    <div class="form-group">
+      <%= label_tag :password %><br>
+      <%= password_field_tag :password, nil, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :password_confirmation %><br>
+      <%= password_field_tag :password_confirmation, nil, class: 'form-control' %>
+    </div>
 
-  <%= submit_tag "Register", class: 'btn btn-default' %>
-<% end %>
+    <%= submit_tag "Register", class: 'btn btn-primary pull-right' %>
+  <% end %>
+</div>

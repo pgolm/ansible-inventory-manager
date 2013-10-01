@@ -1,16 +1,20 @@
-<%= form_tag "/auth/identity/callback" do %>
-  <div class="form-group">
-    <%= label_tag :auth_key, "Email" %><br>
-    <%= text_field_tag :auth_key, nil, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= label_tag :password %><br>
-    <%= password_field_tag :password, nil, class: 'form-control' %>
-  </div>
+<div class="col-md-4 col-md-offset-4">
+  <%= form_tag "/auth/identity/callback" do %>
+    <div class="form-group">
+      <%= label_tag :auth_key, "Email" %><br>
+      <%= text_field_tag :auth_key, nil, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :password %><br>
+      <%= password_field_tag :password, nil, class: 'form-control' %>
+    </div>
 
-  <%= submit_tag "Signin", class: 'btn btn-default' %>
-  <% if can? :create, Identity %>
-  or
-  <%= link_to "Register", new_identity_path %>.
+    <div class="pull-right">
+      <%= submit_tag "Login", class: 'btn btn-primary' %>
+      <% if can? :create, Identity %>
+      or
+      <%= link_to "Register", new_identity_path %>.
+      <% end %>
+    </div>
   <% end %>
-<% end %>
+</div>
