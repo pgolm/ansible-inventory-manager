@@ -1,6 +1,6 @@
 <% if errors.any? %>
   <div class="alert alert-danger">
-    <strong><%= pluralize(errors.count, "error") %> :</strong>
+    <strong>Please fix the following <%= pluralize(errors.count, "error") %> :</strong>
  
     <ul>
     <% errors.full_messages.each do |msg| %>

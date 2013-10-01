@@ -1,12 +1,14 @@
 class Inventory < ActiveRecord::Base
   include SecureKey
-
-  default_scope { order(:name) }
   
   before_create do
     self.key = Inventory::next_secure_key
   end
 
+  default_scope { order(:name) }
+  
+  validates :name, presence: true, uniqueness: { scope: :user_id }
+  
   belongs_to :owner, foreign_key: :user_id,class_name: User
   has_many :groups, class_name: Group, dependent: :destroy
 	has_many :hosts, class_name: Host, dependent: :destroy

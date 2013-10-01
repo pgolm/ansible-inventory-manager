@@ -1,7 +1,8 @@
 class Host < ActiveRecord::Base
   include Variabable 
   default_scope { order(:alias) }
-  
+
+  validates :alias, presence: true, uniqueness: { scope: :inventory_id }  
   validates :variables, json: true
 
   belongs_to :inventory

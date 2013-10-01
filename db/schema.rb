@@ -11,64 +11,68 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130928144936) do
+ActiveRecord::Schema.define(version: 20130925144907) do
 
   create_table "group_hosts", force: true do |t|
-    t.integer  "host_id"
-    t.integer  "group_id"
+    t.integer  "host_id",    null: false
+    t.integer  "group_id",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "groups", force: true do |t|
-    t.string   "name"
+    t.string   "name",                        null: false
     t.text     "description"
     t.text     "variables",    default: "{}"
     t.integer  "group_id"
-    t.integer  "inventory_id"
+    t.integer  "inventory_id",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "groups", ["name", "group_id", "inventory_id"], name: "index_groups_on_name_and_group_id_and_inventory_id"
+  add_index "groups", ["name", "group_id", "inventory_id"], name: "index_groups_on_name_and_group_id_and_inventory_id", unique: true
 
   create_table "hosts", force: true do |t|
-    t.string   "alias"
+    t.string   "alias",                       null: false
     t.text     "description"
     t.text     "variables",    default: "{}"
-    t.integer  "inventory_id"
+    t.integer  "inventory_id",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "hosts", ["alias", "inventory_id"], name: "index_hosts_on_alias_and_inventory_id"
+  add_index "hosts", ["alias", "inventory_id"], name: "index_hosts_on_alias_and_inventory_id", unique: true
 
   create_table "identities", force: true do |t|
-    t.string   "email"
-    t.string   "password_digest"
+    t.string   "email",           null: false
+    t.string   "password_digest", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "identities", ["email"], name: "index_identities_on_email", unique: true
 
   create_table "inventories", force: true do |t|
-    t.string   "name"
+    t.string   "name",        null: false
     t.text     "description"
+    t.string   "key",         null: false
+    t.integer  "user_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "key"
-    t.integer  "user_id"
   end
 
-  add_index "inventories", ["key"], name: "index_inventories_on_key", unique: true
+  add_index "inventories", ["name", "user_id"], name: "index_inventories_on_name_and_user_id", unique: true
 
   create_table "users", force: true do |t|
     t.string   "provider",                   null: false
     t.string   "uid",                        null: false
     t.string   "email",                      null: false
+    t.string   "api_key"
+    t.boolean  "is_admin",   default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_admin",   default: false, null: false
-    t.string   "api_key"
   end
+
+  add_index "users", ["api_key"], name: "index_users_on_api_key"
 
 end

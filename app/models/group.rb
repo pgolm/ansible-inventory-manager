@@ -2,6 +2,8 @@ class Group < ActiveRecord::Base
   include Variabable 
   default_scope { order(:name) }
 
+  validates :name, presence: true, uniqueness: { scope: [:group_id, :inventory_id] }
+
   belongs_to :inventory
 
   has_many :group_host
