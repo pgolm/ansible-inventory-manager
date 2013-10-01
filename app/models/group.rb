@@ -2,7 +2,9 @@ class Group < ActiveRecord::Base
   include Variabable 
   default_scope { order(:name) }
 
-  validates :name, presence: true, uniqueness: { scope: [:group_id, :inventory_id] }
+  validates :name, presence: true, 
+                   uniqueness: { scope: [:group_id, :inventory_id] }, 
+                   exclusion: { in: %w( * all ) }
 
   belongs_to :inventory
 
