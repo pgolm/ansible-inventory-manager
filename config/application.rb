@@ -26,8 +26,10 @@ module AnsibleWebInventory
     # config.i18n.default_locale = :de
    
 
-    config.version = "0.0.1 beta" 
-
+    config.version = "0.0.2 beta" 
     config.registration = false
+
+    config.paths.add "app/api", glob: "**/*.rb"
+    config.autoload_paths += Dir["#{Rails.root}/app/api/*"]
   end
 end

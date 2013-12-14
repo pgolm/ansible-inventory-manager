@@ -36,27 +36,6 @@ class Inventory < ActiveRecord::Base
     result
   end
 
-  def as_ansible_json
-    result = {}
-
-    result['all'] = hosts.map(&:alias)
-
-    groups.find_each do |group|
-      result[group.name] = {}
-      result[group.name]['hosts'] = group.hosts.map(&:alias)
-      result[group.name]['vars'] = ActiveSupport::JSON.decode(group.variables)
-    end
-
-    result['_meta'] = {}
-    result['_meta']['hostvars'] = {}
-
-    hosts.find_each do |host|
-      result['_meta']['hostvars'][host.alias] = ActiveSupport::JSON.decode(host.variables)
-    end
-
-    result
-  end
-
   private 
 
   def ini_host_line(host)

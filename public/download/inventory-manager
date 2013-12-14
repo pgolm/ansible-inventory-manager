@@ -40,13 +40,13 @@ def main(argv):
     if args.list:
         read_settings()
 
-        request = urllib2.Request('%s/ansible/inventory/%s.json' % (server, inventory_key), headers={"Authorization" : "Token token=\"%s\"" % api_key})
+        request = urllib2.Request('%s/api/v2/inventory/%s?token=%s' % (server, inventory_key, api_key))
         print urllib2.urlopen(request).read()
         sys.exit(0)
     elif args.host:
         read_settings()
 
-        request = urllib2.Request('%s/ansible/inventory/%s/%s.json' % (server, inventory_key, args.host), headers={"Authorization" : "Token token=\"%s\"" % api_key})
+        request = urllib2.Request('%s/api/v1/inventory/%s/%s?token=%s' % (server, inventory_key, args.host, api_key))
         print urllib2.urlopen(request).read()
         sys.exit(1)
     else:
