@@ -6,7 +6,7 @@ describe API::API do
     let(:empty_inventory) { create(:inventory) }
     let(:unsafed_inventory) { build(:inventory_with_hosts) }
     let(:host_inventory) { create(:inventory_with_hosts) }
-    let(:group_inventory) { create(:inventory_with_groups) }
+    let(:group_inventory) { create(:inventory_with_group) }
     let(:admin) { create(:user) }
 
     it "unauthorized me" do
