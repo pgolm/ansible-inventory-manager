@@ -56,6 +56,7 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'terminal-notifier-guard'
 
+  gem 'rake'
   gem 'coveralls', require: false
 end
 
