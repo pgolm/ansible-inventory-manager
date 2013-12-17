@@ -31,9 +31,9 @@ describe API::API do
         expect(response.body).to eq @expected
       end
 
-      it "returns a inventory with host" do
+      it "returns a inventory with hosts" do
         @expected = {
-          all: [small_inventory.hosts[0].alias],
+          all: small_inventory.hosts.map(&:alias),
         }.to_json
 
         get "/api/v1/inventory/#{small_inventory.key}?token=#{admin.api_key}"
@@ -41,6 +41,8 @@ describe API::API do
         expect(response.status).to eq 200
         expect(response.body).to eq @expected
       end
+
+      it "returns an inventory with groups"
     end
 
     describe "GET host" do
