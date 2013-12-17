@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   default_scope { order :email }
   
-  has_many :inventories
+  has_many :inventories, dependent: :destroy
   
 	def self.create_with_omniauth(auth)
 	  create! do |user|

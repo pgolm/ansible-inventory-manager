@@ -8,8 +8,9 @@ class Inventory < ActiveRecord::Base
   default_scope { order(:name) }
   
   validates :name, presence: true, uniqueness: { scope: :user_id }
+  validates :owner, presence: true
   
-  belongs_to :owner, foreign_key: :user_id,class_name: User
+  belongs_to :owner, foreign_key: :user_id, class_name: User
   has_many :groups, class_name: Group, dependent: :destroy
 	has_many :hosts, class_name: Host, dependent: :destroy
 
