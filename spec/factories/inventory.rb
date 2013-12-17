@@ -6,15 +6,15 @@ FactoryGirl.define do
     owner { create(:user) }
 
     trait :with_host do
-      hosts { build_list(:host, 1) }
+      hosts { create_list(:host, 1, inventory_id: id) }
     end
 
     trait :with_hosts do
-      hosts { build_list(:host, 12) }
+      hosts { create_list(:host, 12, inventory_id: id) }
     end
 
     factory :small_inventory, traits: [:with_host]
-    factory :big_inventory, traits: [:with_host]
+    factory :big_inventory, traits: [:with_hosts]
   end
 
 end

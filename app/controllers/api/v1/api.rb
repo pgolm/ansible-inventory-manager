@@ -48,7 +48,7 @@ module API
           error!('Not Found', 404) if inventory.nil?
 
           host = inventory.hosts.find_by(alias: params[:host])
-          error!('Not Found', 404) if inventory.nil?
+          error!('Not Found', 404) if host.nil?
 
           ActiveSupport::JSON.decode(host.variables)
         end
