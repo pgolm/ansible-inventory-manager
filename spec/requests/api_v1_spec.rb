@@ -11,7 +11,7 @@ describe API::API do
 
     it "unauthorized me" do
       get "/api/v1/inventory/#{empty_inventory.key}"
-      response.status.should == 401 # unauthorized
+      expect(response.status).to eq 401 # unauthorized
     end
 
     describe "GET inventory" do
