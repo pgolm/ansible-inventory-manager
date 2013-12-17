@@ -1,2 +1,0 @@
-module AnsibleApiHelper
-end
