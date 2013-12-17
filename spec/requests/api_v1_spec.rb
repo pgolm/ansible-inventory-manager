@@ -65,10 +65,13 @@ describe API::API do
         expect(response.status).to eq 404
       end
 
-      it "return a host withouts variables" do
-        get "/api/v1/inventory/#{host_inventory.key}/#{host_inventory.hosts[0].alias}?token=#{admin.api_key}"
+      it "return a host" do
+        host = host_inventory.hosts.sample
+        get "/api/v1/inventory/#{host_inventory.key}/#{host.alias}?token=#{admin.api_key}"
+        vars = ActiveSupport::JSON.decode(host.variables)
 
         expect(response.status).to eq 200
+        expect(response.body).to eq(vars.to_json)
       end
     end
   end

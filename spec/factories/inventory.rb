@@ -6,7 +6,7 @@ FactoryGirl.define do
     owner { create(:user) }
 
     trait :with_hosts do
-      hosts { create_list(:host, 3, inventory_id: id) }
+      hosts { create_list(:host_with_vars, 3, inventory_id: id) }
     end
 
     trait :with_group do
