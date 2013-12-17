@@ -1,5 +1,7 @@
 # Ansible Inventory Manager
 
+[![Build Status](https://travis-ci.org/pgolm/ansible-inventory-manager.png)](https://travis-ci.org/pgolm/ansible-inventory-manager) [![Coverage Status](https://coveralls.io/repos/pgolm/ansible-inventory-manager/badge.png?branch=feature%2Ftravis)](https://coveralls.io/r/pgolm/ansible-inventory-manager?branch=feature%2Ftravis)
+
 A Web UI to manage ansible inventories.
 
 [DEMO](http://ansible-inventory-manager-demo.herokuapp.com/)
