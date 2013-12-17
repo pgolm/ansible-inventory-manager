@@ -9,7 +9,7 @@ describe API::API do
     let(:group_inventory) { create(:inventory_with_group) }
     let(:admin) { create(:user) }
 
-    it "unauthorized me" do
+    it "accessed denied" do
       get "/api/v1/inventory/#{empty_inventory.key}"
       expect(response.status).to eq 401 # unauthorized
     end
