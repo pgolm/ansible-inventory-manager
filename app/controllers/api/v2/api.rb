@@ -1,7 +1,7 @@
 module API
   module V2
     module Entities
-      class Inventory < API::V1::Entities::Inventory
+      class Inventory < V1::Entities::Inventory
         def initialize(inventory)
           super(inventory)
 

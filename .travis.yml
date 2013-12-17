@@ -1,8 +1,3 @@
 language: ruby
 rvm:
   - 2.0.0
-before_script:
-  - "bundle exec rake db:setup"
-script: "bundle exec rspec"
-after_success:
- - coveralls
