@@ -9,8 +9,12 @@ FactoryGirl.define do
       hosts { create_list(:host, 3, inventory_id: id) }
     end
 
-    factory :small_inventory, traits: [:with_hosts]
-    factory :big_inventory, traits: [:with_hosts]
+    trait :with_groups do
+      groups { create_list(:group, 3, inventory_id: id) }
+    end
+
+    factory :inventory_with_hosts, traits: [:with_hosts]
+    factory :inventory_with_groups, traits: [:with_groups]
   end
 
 end
