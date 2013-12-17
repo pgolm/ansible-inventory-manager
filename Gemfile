@@ -30,6 +30,19 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# Grape
+gem 'grape'
+
+# OmniAuth
+gem 'omniauth-identity'
+
+# Bootstrap
+gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
+                              :github => 'anjlab/bootstrap-rails'
+
+# cancan
+gem 'cancan'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -52,27 +65,16 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
 
-  gem 'guard'
-  gem 'guard-rspec', require: false
-  gem 'terminal-notifier-guard'
-
   gem 'rake'
   gem 'coveralls', require: false
 end
 
+group :development do 
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'terminal-notifier-guard', require: false
+end 
 
-# Grape
-gem 'grape'
-
-# OmniAuth
-gem 'omniauth-identity'
-
-# Bootstrap
-gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
-                              :github => 'anjlab/bootstrap-rails'
-
-# cancan
-gem 'cancan'
 
 # heroku
 gem 'rails_12factor', group: :production
