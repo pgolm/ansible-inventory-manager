@@ -6,4 +6,11 @@ FactoryGirl.define do
     email { "admin#{id}@example.com" }
     api_key { generate(:random_id) }
   end
+
+  factory :identity, class: Identity do
+    id { generate(:random_id) }
+    email { "user#{id}@example.com" }
+    password { "password#{id}" }
+    password_confirmation { "#{password}" }
+  end
 end
