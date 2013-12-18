@@ -69,10 +69,11 @@ group :development, :test do
   gem 'coveralls', require: false
 end
 
-group :development do 
+group :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'terminal-notifier-guard', require: false
+  gem 'launchy'
 end 
 
 

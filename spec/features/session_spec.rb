@@ -3,10 +3,15 @@ require "spec_helper"
 feature "Session" do
   let(:user) { create(:identity) }
 
-  feature "Login" do
-    background do
+  context "Login" do
+    before :each do
+      OmniAuth.config.test_mode = false
       visit "/signin"
       fill_in "Email", with: user.email
+    end
+
+    after do
+      OmniAuth.config.test_mode = true
     end
 
     scenario "Success" do
@@ -22,5 +27,13 @@ feature "Session" do
 
       expect(page).to have_text("not authorized")
     end
+  end
+
+  scenario "Logout" do
+    set_user_session user
+    visit "/"
+    click_link "Logout"
+
+    expect(page).to have_text("not authorized")
   end
 end

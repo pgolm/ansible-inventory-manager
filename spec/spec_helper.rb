@@ -9,6 +9,8 @@ require 'rspec/autorun'
 require 'capybara/rails'
 require 'capybara/rspec'
 
+require File.expand_path("../omniauth_helper.rb", __FILE__)
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -23,6 +25,9 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
+  OmniAuth.config.test_mode = true 
+  config.include OmniAuthHelpers
+
   # Use FactoryGirl
   config.include FactoryGirl::Syntax::Methods
 
