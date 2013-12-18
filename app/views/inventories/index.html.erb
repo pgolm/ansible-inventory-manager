@@ -17,7 +17,7 @@
 					<button id="all-inventory-cb" type="button" class="btn btn-default" data-toggle="button">Show all</button>
 					<% end %>
 
-					<%= link_to new_inventory_path, class: 'btn btn-primary' do %>
+					<%= link_to new_inventory_path, class: 'btn btn-primary', id: 'new_inventory' do %>
 						<i class="glyphicon glyphicon-plus"></i>
 					<% end %>
 				</div>
@@ -43,11 +43,11 @@
 			
 			<td>
 				<div class="btn-group pull-right">
-					<%= link_to edit_inventory_path(inventory), class: 'btn btn-default' do %>
+					<%= link_to edit_inventory_path(inventory), class: 'btn btn-default', id: 'edit_inventory' do %>
 						<i class="glyphicon glyphicon-pencil"></i>
 					<% end %>
 
-					<%= link_to inventory, method: :delete, data: { confirm: 'Delete this inventory?'}, class: 'btn btn-danger' do %>
+					<%= link_to inventory, method: :delete, data: { confirm: 'Delete this inventory?'}, class: 'btn btn-danger', id: "delete_#{inventory.name}" do %>
 						<i class="glyphicon glyphicon-trash"></i>
 					<% end %>
 
