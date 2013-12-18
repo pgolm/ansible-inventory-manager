@@ -1,28 +1,29 @@
 require "spec_helper"
 
 feature "Session" do
-  let(:user) { create(:identity) }
+  let(:identity) { create(:identity) }
+  let(:known_identity) { create(:known_identity) }
 
   context "Login" do
     before :each do
       OmniAuth.config.test_mode = false
       visit "/signin"
-      fill_in "Email", with: user.email
+      fill_in "Email", with: identity.email
     end
 
-    after do
+    after :all do
       OmniAuth.config.test_mode = true
     end
 
     scenario "Success" do
-      fill_in "Password", with: user.password
+      fill_in "Password", with: identity.password
       click_button "Login"
 
       expect(page).to have_text("Signed in!")
     end
 
     scenario "Denied" do
-      fill_in "Password", with: "#{user.password}_failed"
+      fill_in "Password", with: "#{identity.password}_failed"
       click_button "Login"
 
       expect(page).to have_text("not authorized")
@@ -30,7 +31,7 @@ feature "Session" do
   end
 
   scenario "Logout" do
-    set_user_session user
+    set_user_session known_identity
     visit "/"
     click_link "Logout"
 

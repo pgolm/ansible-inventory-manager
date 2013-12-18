@@ -13,8 +13,12 @@ FactoryGirl.define do
     password { "password#{id}" }
     password_confirmation { "#{password}" }
 
-    before :create do |user| 
-      create(:user, uid: user.id, email: user.email) 
+    trait :known do
+      before :create do |user| 
+        create(:user, uid: user.id, email: user.email) 
+      end
     end
+
+    factory :known_identity, traits: [:known]
   end
 end

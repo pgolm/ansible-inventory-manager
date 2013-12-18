@@ -1,7 +1,7 @@
 require "spec_helper"
 
 feature "Inventory" do
-  let(:user) { create(:identity) }
+  let(:user) { create(:known_identity) }
   let!(:inventory) { create(:inventory_with_groups_hosts, owner: User.find_by(email: user.email)) }
 
   before do
