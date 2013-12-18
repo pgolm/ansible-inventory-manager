@@ -20,6 +20,8 @@ FactoryGirl.define do
     factory :inventory_with_hosts, traits: [:with_hosts]
     factory :inventory_with_group, traits: [:with_group]
     factory :inventory_with_groups, traits: [:with_groups]
+
+    factory :inventory_with_groups_hosts, traits: [:with_groups, :with_hosts]
   end
 
 end

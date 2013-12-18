@@ -12,5 +12,9 @@ FactoryGirl.define do
     email { "user#{id}@example.com" }
     password { "password#{id}" }
     password_confirmation { "#{password}" }
+
+    before :create do |user| 
+      create(:user, uid: user.id, email: user.email) 
+    end
   end
 end
