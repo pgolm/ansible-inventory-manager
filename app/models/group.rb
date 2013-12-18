@@ -5,6 +5,7 @@ class Group < ActiveRecord::Base
   validates :name, presence: true, 
                    uniqueness: { scope: [:group_id, :inventory_id] }, 
                    exclusion: { in: %w( * all ) }
+  validates :inventory_id, presence: true
 
   belongs_to :inventory
 

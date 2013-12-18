@@ -25,6 +25,11 @@ RSpec.configure do |config|
   # Use FactoryGirl
   config.include FactoryGirl::Syntax::Methods
 
+  # Disable rspec should syntax
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
+  
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
