@@ -23,4 +23,4 @@ Password: admin
 ## Configuration
 
 ### Allow user registration
-Set ```config.registrion = true``` in *config/application.rb*.
+Set ```config.registration = true``` in *config/application.rb*.
